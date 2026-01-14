@@ -1,8 +1,10 @@
 public class DynamicArray<T> {
+    //attributes
     private T[] array;
     private int size;      
     private int capacity; 
 
+    //constructor
     @SuppressWarnings("unchecked")
     public DynamicArray() {
         this.capacity = 2; 
@@ -10,8 +12,7 @@ public class DynamicArray<T> {
         this.size = 0;
     }
 
-    // Add method
-    // Time Complexity: Average O(1), If it needs to grow  O(N)
+    // add(): Time Complexity: Average O(1), If it needs to grow  O(N)
     public void add(T element) {
         if (size == capacity) {  //If array is full, call the resize function and double array
             resize();
@@ -20,8 +21,7 @@ public class DynamicArray<T> {
         size++;
     }
 
-    //Accessing element 
-    // Time Complexity: O(1)
+    //Getter: Time Complexity: O(1)
     public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -29,8 +29,7 @@ public class DynamicArray<T> {
         return array[index];
     }
 
-    // Removing element and shifting
-    // Time Complexity: O(N) (Because we are shifting the elements)
+    // Remove and shift: Time Complexity: O(N) (Because we are shifting the elements)
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -50,13 +49,13 @@ public class DynamicArray<T> {
         return removedElement;
     }
 
-    //size function, O(1) complexity
+    //size getter: O(1) time complexity
     public int size() {
         return size;
     }
 
     // (Resizing Logic)
-    // It doubles the size, O(n) complexity because we are copying the elements from the old array to new array
+    // It doubles the size with O(n) time complexity because we are copying all elements from the old array to new array
     @SuppressWarnings("unchecked")
     private void resize() {
         int newCapacity = capacity * 2; //Doubling the array
